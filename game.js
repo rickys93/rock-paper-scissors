@@ -1,4 +1,5 @@
 const prompt = require("prompt-sync")();
+const color = require("ansi-colors")
 
 
 let possible_choices = ['r', 'p', 's']
@@ -9,6 +10,8 @@ let full_name = {
     'p':'Paper',
     's':'Scissors'
 }
+
+
 
 const get_user_choice = () => {
     let user_choice
@@ -59,19 +62,20 @@ const determine_result = (user_choice, computer_choice) => {
     }
 }
 
-const create_round_result_object = (user_result, round_number, user_choice, computer_choice) => {
-    let round_result = {}
-    round_result.user_result = user_result
-    round_result.round_number = round_number
-    round_result.user_choice = user_choice
-    round_result.computer_choice = computer_choice
-    return round_result
+const get_text_color = (round_result) => {
+    if (round_result === 'win') {
+        return color.green(round_result.toUpperCase())
+    } else if (round_result === 'lose') {
+        return color.red(round_result.toUpperCase())
+    } else {
+        return color.yellow(round_result.toUpperCase())
+    }
 }
 
 const print_results = (round_result) => {
     let message = `User choice: ${full_name[round_result.user_choice]}`
     message += `\nComputer Choice: ${full_name[round_result.computer_choice]}`
-    message += `\nRound result: ${round_result.user_result.toUpperCase()}`
+    message += `\nRound result: ${get_text_color(round_result.user_result)}`
     console.log(message)
 }
 
@@ -110,7 +114,7 @@ const play_game = () => {
         console.log(`\nRound ${round_number}:`)
         let computer_choice = get_computer_choice()
         let user_result = determine_result(user_choice, computer_choice)
-        let round_result = create_round_result_object(user_result, round_number, user_choice, computer_choice)
+        let round_result = {user_result, round_number, user_choice, computer_choice}
         
         print_results(round_result)
         update_user_results(round_result, user_results)        
