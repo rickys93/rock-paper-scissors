@@ -1,6 +1,6 @@
 const prompt = require("prompt-sync")();
 
-
+// The User class contains the properties and methods for the user's choices and results.
 class User {
     
     constructor(possibleChoices) {
@@ -20,6 +20,7 @@ class User {
 
     getChoice() {
         let userChoice
+        // Keep asking for choice until a user input is inputted ['r', 'p', 's', 'q', 're']
         while (!this.userInputs.includes(userChoice)) {
             userChoice = prompt("Please select Rock/Paper/Scissors (type R/P/S) (Q = Quit, RE = Get results): ");
             userChoice.toLowerCase();
@@ -38,6 +39,7 @@ class User {
         console.log(`User Results:\n${JSON.stringify(this.results, null, 4)}`)
     }
 
+    // this method updates the stats from previous rounds
     updateResults(round) {
         this.results.roundsPlayed ++ 
         if (round.userResult === 'win') {
@@ -51,6 +53,7 @@ class User {
     }
 }
 
+
 class Computer {
     
     constructor(possibleChoices) {
@@ -58,6 +61,7 @@ class Computer {
         this.choice = null
     }
 
+    // get random choice from R/P/S as the computer's decision
     getChoice(possibleChoices) {
         let random_int = Math.floor(Math.random() * this.possibleChoices.length)
         let computerChoice = this.possibleChoices[random_int]
@@ -65,12 +69,14 @@ class Computer {
     }
 }
 
+// Choice clas that contains the decision
 class Choice {
 
     constructor(decision) {
         this.decision = decision
     }
 
+    // gets the full name version of the decision
     fullName() {
         let fullNames = {
             'r':'Rock',

@@ -11,15 +11,16 @@ class Round {
         this.playerQuit = false
     }
 
+    // this method plays each round
     playRound() {
         this.user.getChoice()
         if (this.user.choice.decision === 'q') {
             this.playerQuit = true
             return
         }
+        // user choose to print results, end current round
         if (this.user.choice.decision === 're') { return }
 
-        console.log(`\nRound ${this.number}:`)
         this.computer.getChoice()
         this.determineResult()
         this.user.result = this.createRoundResultObject()
@@ -27,7 +28,7 @@ class Round {
         this.printRoundResults()
         this.number ++
     }
-
+    // creates object containing the round current round results
     createRoundResultObject() {
         let roundResult = {
             roundNumber: this.number, 
@@ -38,6 +39,7 @@ class Round {
         return roundResult
     }
 
+    // determine the results of the round (whether the user won, lost or drew)
     determineResult() {
         if (this.user.choice.decision === this.computer.choice.decision) {
             this.userResult = "draw"
@@ -70,12 +72,14 @@ class Round {
     }
 
     printRoundResults() {
-        let message = `User choice: ${this.user.choice.fullName()}`
+        let message = `\nRound ${this.number}:`
+        message += `\nUser choice: ${this.user.choice.fullName()}`
         message += `\nComputer Choice: ${this.computer.choice.fullName()}`
         message += `\nRound result: ${this.getResultText(this.userResult)}`
         console.log(message)
     }
 
+    // select colour based on round result
     getResultText(roundResult) {
         if (roundResult === 'win') {
             return color.green(roundResult.toUpperCase())
