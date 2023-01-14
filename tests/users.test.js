@@ -1,7 +1,7 @@
 const each = require('jest-each').default;
 
-const { User, Computer, Choice } = require("./users");
-const { Round } = require("./round");
+const { User, Computer, Choice } = require("../users");
+const { Round } = require("../round");
 
 describe("User class", () => {
     it("Exists", () => {
