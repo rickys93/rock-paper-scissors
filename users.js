@@ -1,9 +1,16 @@
 const prompt = require("prompt-sync")();
 
+class Player {
+    constructor() {
+        this.possibleChoices = ['r', 'p', 's']
+    }
+}
+
 // The User class contains the properties and methods for the user's choices and results.
-class User {
+class User extends Player {
     
-    constructor(possibleChoices) {
+    constructor() {
+        super()
         this.choice = null
         this.result = null
         this.results = {
@@ -13,7 +20,6 @@ class User {
             "draws":0,
             "lastRoundResults":{}
         }
-        this.possibleChoices = possibleChoices
         this.extraChoices = ['q', 're']
         this.userInputs = this.possibleChoices.concat(this.extraChoices)
     }
@@ -54,15 +60,15 @@ class User {
 }
 
 
-class Computer {
+class Computer extends Player {
     
-    constructor(possibleChoices) {
-        this.possibleChoices = possibleChoices
+    constructor() {
+        super()
         this.choice = null
     }
 
     // get random choice from R/P/S as the computer's decision
-    getChoice(possibleChoices) {
+    getChoice() {
         let random_int = Math.floor(Math.random() * this.possibleChoices.length)
         let computerChoice = this.possibleChoices[random_int]
         this.choice = new Choice(computerChoice)

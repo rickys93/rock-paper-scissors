@@ -11,7 +11,7 @@ describe("User class", () => {
         expect(User).toBeInstanceOf(Object)
     })
 
-    let user = new User([])
+    let user = new User()
     let round = new Round(user)
     round.user.result = {"key":"value"}
     describe("updateResults", () => {

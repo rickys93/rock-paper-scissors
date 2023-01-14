@@ -3,9 +3,6 @@ const { Round } = require("./round.js")
 
 
 class Game {
-    constructor() {
-        this.possibleChoices = ['r', 'p', 's']
-    }
 
     play() {
         // instantiate from the user, computer and round classes
@@ -21,5 +18,7 @@ class Game {
 }
 
 
-game = new Game()
-game.play()
+// game = new Game()
+// game.play()
+
+module.exports = { Game }

@@ -2,11 +2,11 @@ const color = require("ansi-colors")
 
 class Round {
 
-    constructor(user, computer, number, possibleChoices) {
+    constructor(user, computer, possibleChoices) {
         this.user = user
         this.computer = computer
-        this.number = number
         this.possibleChoices = possibleChoices
+        this.number = 1
         this.previousResult = {}
         this.playerQuit = false
     }
