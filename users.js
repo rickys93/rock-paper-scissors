@@ -3,6 +3,7 @@ const prompt = require("prompt-sync")();
 class Player {
     constructor() {
         this.possibleChoices = ['r', 'p', 's']
+        this.choice = null
     }
 }
 
@@ -11,7 +12,6 @@ class User extends Player {
     
     constructor() {
         super()
-        this.choice = null
         this.result = null
         this.results = {
             "roundsPlayed":0,
@@ -64,7 +64,6 @@ class Computer extends Player {
     
     constructor() {
         super()
-        this.choice = null
     }
 
     // get random choice from R/P/S as the computer's decision
